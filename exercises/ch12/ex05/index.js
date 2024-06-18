@@ -39,14 +39,3 @@ export function* readLines(filePath, bufferSize) {
     }
   }
 }
-
-const filePath =
-  "C:\\Users\\r00528257\\OneDrive - Ricoh\\ドキュメント\\javascript講座\\練習問題\\exercises-main-exercises\\exercises\\exercises\\ch12\\ex05\\test.txt";
-// ジェネレータ関数の動作テスト
-try {
-  for (const line of readLines(filePath, 64)) {
-    console.log(line);
-  }
-} catch (err) {
-  console.error("Error:", err);
-}
