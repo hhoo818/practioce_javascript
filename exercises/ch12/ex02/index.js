@@ -16,5 +16,3 @@ function fibo2() {
 export function fibonacci2(n) {
   for (let f of fibo2()) if (n-- <= 0) return f;
 }
-
-console.log(fibonacci2(5));
