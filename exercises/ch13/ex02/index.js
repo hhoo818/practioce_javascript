@@ -179,6 +179,7 @@ function f12() {
   //new promise内のsetTimeOutのタスクが実行される→promiseの一番下まで到達pendingの状態→エラーがスローされる
   // 違うかも
   new Promise((resolve, reject) => {
-    setTimeout(() => errX(), 0);
+    setTimeout(() => reject(new Error("error")), 2);
   }).catch((e) => log(e.message));
 }
+f12();

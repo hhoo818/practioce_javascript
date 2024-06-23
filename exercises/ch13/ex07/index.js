@@ -78,8 +78,8 @@ async function h4() {
     const p2 = wait1().then(() => {
       errY();
     });
-    //await p1;
-    //await p2;
+    await p1;
+    await p2;
   } catch (e) {
     log(e.message);
   }

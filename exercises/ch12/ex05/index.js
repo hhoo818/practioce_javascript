@@ -1,4 +1,5 @@
 import { openSync, readSync, closeSync } from "fs";
+// import fs from "fs";
 
 export function* readLines(filePath, bufferSize) {
   const buffer = Buffer.alloc(bufferSize);
