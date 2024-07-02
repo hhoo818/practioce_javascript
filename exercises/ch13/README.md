@@ -420,7 +420,7 @@ function g4() {
 
 ## 問題 13.6 🖋️
 
-jQuery Deferred について調べ `Promise` との関係性について説明しなさい。
+jQuery Deferred について調べ [`Promise`](https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Global_Objects/Promise) との関係性について説明しなさい。
 
 **出題範囲**: なし
 
@@ -482,7 +482,7 @@ async function h4() {
 
 **出題範囲**: 13.3
 
-## 問題 13.9 💻🧪
+## 問題 13.9 🖋️
 
 以下の各関数を実行すると何が出力されるか予想し実際に確認しなさい。
 またその理由を 2、3 行のテキスト、図のいずれかまたは両方で説明しなさい。テキスト・図は問題 13.2 を参考にしなさい。
