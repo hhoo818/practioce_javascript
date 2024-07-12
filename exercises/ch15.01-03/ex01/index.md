@@ -1,0 +1,1 @@
+srcでimportするjsを1つだけにする
