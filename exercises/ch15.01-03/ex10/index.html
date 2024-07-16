@@ -4,7 +4,6 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
-    <script type="module" src="/ch15.01-03/ex10/index.js"></script>
   </head>
   <body>
     <div
@@ -13,10 +12,36 @@
         height: 480px;
         border-style: solid;
         border-width: 1px;
+        padding: 10px;
       "
       id="editor-front"
       data-testid="editor-front"
     ></div>
     <input type="text" name="editor-back" id="editor-back" />
+
+    <script>
+      divElement.addEventListener("DOM loaded", () => {
+        const divElement = document.getElementById("editor-front");
+        const inputElement = document.getElementById("editor-back");
+
+        // 1. div要素をクリックするとinput要素がfocusされる
+        divElement.addEventListener("click", () => {
+          inputElement.focus();
+        });
+
+        // 2. divの背景色を変更する
+        inputElement.addEventListener("focus", () => {
+          divElement.style.backgroundColor = "silver";
+        });
+        inputElement.addEventListener("blur", () => {
+          divElement.style.backgroundColor = "white";
+        });
+
+        // 3. input要素に入力されたtextをdiv要素に表示する
+        inputElement.addEventListener("input", (e) => {
+          divElement.textContent = e.target.value;
+        });
+      });
+    </script>
   </body>
 </html>

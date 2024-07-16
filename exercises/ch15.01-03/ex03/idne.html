@@ -1,0 +1,23 @@
+<!doctype html>
+<html>
+  <head>
+    <title>Integrity Test</title>
+  </head>
+  <body>
+    <h1>Script Integrity Test</h1>
+
+    <!-- 正しい integrity 値 -->
+    <script
+      src="helloWorld.js"
+      integrity="sha256-bzH3j9jwPRhsmVPAw7QABCpSCyaGc+Nke/vNAokg6XI="
+      crossorigin="anonymous"
+    ></script>
+
+    <!-- 不正な integrity 値 -->
+    <script
+      src="helloWorld.js"
+      integrity="sha384-incorrectHash"
+      crossorigin="anonymous"
+    ></script>
+  </body>
+</html>

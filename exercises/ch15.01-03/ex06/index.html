@@ -1,0 +1,75 @@
+<!--https://codepen.io/yoidea/pen/ZEXVOvyを参考 !-->
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script type="module" src="index.js"></script>
+    <div
+      id="notification"
+      class="notification"
+      style="position: fixed; z-index: 1; width: 100%"
+    ></div>
+    <section class="hero is-warning">
+      <div class="hero-body">
+        <div class="container">
+          <div class="notification is-primary">
+            <p>写真を撮影しました</p>
+          </div>
+          <h1 class="title is-size-1">登録完了</h1>
+          <p class="is-size-4">お客様の会員登録が正常に完了しました。</p>
+          <p class="is-size-4 has-text-danger">
+            期限内に<span class="is-size-3 has-text-weight-bold">98,000円</span
+            >お支払い下さい。
+          </p>
+          <div class="notification is-danger">
+            <p class="is-size-3 has-text-centered">
+              残り
+              <span id="hour">6</span>時間 <span id="min">0</span>分
+              <span id="sec">0</span>秒
+            </p>
+            <progress class="progress"></progress>
+          </div>
+          <p class="has-text-danger">
+            お支払いが確認できない場合は<span class="has-text-weight-bold"
+              >法的措置</span
+            >をとらせていただきますのでご注意下さい。
+          </p>
+        </div>
+      </div>
+    </section>
+    <section class="section">
+      <div class="container">
+        <h2 class="title">お客様情報</h2>
+        <table class="table is-striped is-fullwidth">
+          <tr>
+            <td>登録日時</td>
+            <td id="date"></td>
+          </tr>
+          <tr>
+            <td>端末情報</td>
+            <td id="device"></td>
+          </tr>
+          <tr>
+            <td>言語</td>
+            <td id="language"></td>
+          </tr>
+        </table>
+        <h2 class="title">お問合せ</h2>
+        <table class="table is-striped is-fullwidth">
+          <tr>
+            <td>電話番号</td>
+            <td>0120-000-000</td>
+          </tr>
+          <tr>
+            <td>メールアドレス</td>
+            <td>info@example.com</td>
+          </tr>
+        </table>
+      </div>
+    </section>
+  </body>
+</html>
