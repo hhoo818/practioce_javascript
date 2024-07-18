@@ -1,4 +1,4 @@
-function createTrackedObject(obj) {
+export function createTrackedObject(obj) {
   const callHistory = [];
 
   const proxy = new Proxy(obj, {
@@ -24,19 +24,3 @@ function createTrackedObject(obj) {
 
   return { proxy, callHistory };
 }
-
-/*
-const myObject = {
-  greet(name) {
-    console.log(`Hello, ${name}!`);
-  },
-  add(a, b) {
-    return a + b;
-  },
-};
-
-const { proxy, callHistory } = createTrackedObject(myObject);
-proxy.greet("Alice"); 
-proxy.add(2, 3); 
-console.log(callHistory); 
-*/
