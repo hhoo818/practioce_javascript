@@ -1,8 +1,5 @@
-document.getElementById("loadModule").addEventListener("click", async () => {
-  try {
-    const module = await import("./server.js");
-    module.hello();
-  } catch (error) {
-    console.error("Error importing module:", error);
-  }
-});
+export function hello() {
+  const messageElement = document.createElement("p");
+  messageElement.textContent = "Hello world";
+  document.body.appendChild(messageElement);
+}

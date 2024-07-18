@@ -6,9 +6,19 @@
     <title>Document</title>
   </head>
   <body>
-    <h1>Dynamic Import Test</h1>
-    <button id="loadModule">Load Module</button>
-
-    <script type="module" src="main.js"></script>
+    <button id="loadModuleButton">Load Module</button>
+    <script>
+      document
+        .getElementById("loadModuleButton")
+        .addEventListener("click", async () => {
+          try {
+            //CORS policyではじかれるのでサーバーを立ち上げる
+            const module = await import("./main.js");
+            module.hello();
+          } catch (err) {
+            console.error("モジュールの読み込み中にエラーが発生しました:", err);
+          }
+        });
+    </script>
   </body>
 </html>
