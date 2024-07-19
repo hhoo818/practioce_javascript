@@ -13,6 +13,7 @@ test("test", () => {
   proxy.echo("hello World");
   proxy.add(2, 3);
 
+  // これだとオブジェクトが増えているのに気づけないからstrictEqualのほうがいい。
   expect(callHistory[0].timestamp).toBeInstanceOf(Date);
   expect(callHistory[0].method).toBe("echo");
   expect(callHistory[0].parameters).toEqual(["hello World"]);
