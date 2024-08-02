@@ -10,7 +10,6 @@ form.addEventListener("submit", (e) => {
   }
   const todo = input.value.trim();
   input.value = "";
-
   const clone = template.content.cloneNode(true);
   const li = clone.querySelector("li");
   const toggle = clone.querySelector("input");

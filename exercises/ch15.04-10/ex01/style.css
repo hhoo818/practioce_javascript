@@ -1,3 +1,72 @@
-.completed {
+body {
+  background-color: #ff00ff; /* 派手なピンク色 */
+  color: #00ff00; /* 明るい緑色 */
+  font-family: Arial, sans-serif;
+}
+
+form {
+  margin-bottom: 20px;
+}
+
+input[type="text"] {
+  width: 300px;
+  padding: 10px;
+  border: 2px solid #00ffff; /* サイアングリーン */
+  background-color: #ffff00; /* 鮮やかな黄色 */
+  color: #ff00ff; /* 派手なピンク色 */
+}
+
+button {
+  padding: 10px 20px;
+  border: none;
+  background-color: #ff0000; /* 鮮やかな赤色 */
+  color: #00ff00; /* 明るい緑色 */
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #00ff00; /* 明るい緑色 */
+  color: #ff0000; /* 鮮やかな赤色 */
+}
+
+ul#todo-list {
+  list-style-type: none;
+  padding: 0;
+}
+
+li {
+  background-color: #00ff00; /* 明るい緑色 */
+  color: #ff00ff; /* 派手なピンク色 */
+  border-bottom: 2px solid #00ffff; /* サイアングリーン */
+  padding: 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+li.completed {
+  background-color: #ff0000; /* 鮮やかな赤色 */
+  color: #00ffff; /* サイアングリーン */
   text-decoration: line-through;
+}
+
+input.toggle {
+  margin-right: 10px;
+}
+
+label.content {
+  flex-grow: 1;
+}
+
+button.destroy {
+  background-color: #ff00ff; /* 派手なピンク色 */
+  color: #ffff00; /* 鮮やかな黄色 */
+  border: none;
+  cursor: pointer;
+  padding: 5px 10px;
+}
+
+button.destroy:hover {
+  background-color: #ffff00; /* 鮮やかな黄色 */
+  color: #ff00ff; /* 派手なピンク色 */
 }
