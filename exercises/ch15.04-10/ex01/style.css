@@ -33,35 +33,44 @@ button:hover {
   color: #ff0000; /* 鮮やかな赤色 */
 }
 
+/*点を消す*/
 ul#todo-list {
   list-style-type: none;
   padding: 0;
 }
 
 li {
+  /*背景を黄緑に*/
   background-color: #00ff00; /* 明るい緑色 */
+  /*フォントをピンクに*/
   color: #ff00ff; /* 派手なピンク色 */
+  /*枠淵を水色に*/
   border-bottom: 2px solid #00ffff; /* サイアングリーン */
   padding: 10px;
   display: flex;
+  /*間にスペース*/
   justify-content: space-between;
   align-items: center;
 }
-
+/*チェックを入れると背景があかになり、字は水色になる。取り消し線を入れる*/
 li.completed {
   background-color: #ff0000; /* 鮮やかな赤色 */
   color: #00ffff; /* サイアングリーン */
   text-decoration: line-through;
 }
 
+
+/*文字書くところの右に10pxマージを入れる*/
 input.toggle {
   margin-right: 10px;
 }
 
+/*レックス伸長係数を設定。今回はなくてもいい*/
 label.content {
   flex-grow: 1;
 }
 
+/*×ボタンの背景をピンク、字の色を黄色、カーソルをホバーされたらクリックボタンに*/
 button.destroy {
   background-color: #ff00ff; /* 派手なピンク色 */
   color: #ffff00; /* 鮮やかな黄色 */
@@ -69,7 +78,7 @@ button.destroy {
   cursor: pointer;
   padding: 5px 10px;
 }
-
+/*×ボタンがホバーされたら背景色を黄色に色をピンクに*/
 button.destroy:hover {
   background-color: #ffff00; /* 鮮やかな黄色 */
   color: #ff00ff; /* 派手なピンク色 */
