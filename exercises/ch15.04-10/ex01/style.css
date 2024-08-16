@@ -1,3 +1,4 @@
+/*背景色をピンクにしてフォントを黄緑にする*/
 body {
   background-color: #ff00ff; /* 派手なピンク色 */
   color: #00ff00; /* 明るい緑色 */
@@ -8,6 +9,7 @@ form {
   margin-bottom: 20px;
 }
 
+/*入力画面を黄色にして字の色をピンクしして、枠を水色にする。*/
 input[type="text"] {
   width: 300px;
   padding: 10px;
@@ -16,6 +18,7 @@ input[type="text"] {
   color: #ff00ff; /* 派手なピンク色 */
 }
 
+/*submitボタンを赤色にして字を黄緑にする*/
 button {
   padding: 10px 20px;
   border: none;
@@ -24,6 +27,7 @@ button {
   cursor: pointer;
 }
 
+/* submitボタンの上にカーソルがきたら背景を黄緑にして、字の色を赤にする 違うかも*/
 button:hover {
   background-color: #00ff00; /* 明るい緑色 */
   color: #ff0000; /* 鮮やかな赤色 */
