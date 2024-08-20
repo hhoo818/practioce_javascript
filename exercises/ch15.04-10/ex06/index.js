@@ -1,9 +1,9 @@
 const template = document.createElement("template");
 template.innerHTML = `\
 <style>
-.completed {
-  text-decoration: line-through;
-}
+  .completed {
+    text-decoration: line-through;
+  }
 </style>
 
 <form id="new-todo-form">
@@ -20,7 +20,42 @@ class TodoApp extends HTMLElement {
     this.shadowRoot.appendChild(template.content.cloneNode(true));
 
     this.form = this.shadowRoot.querySelector("#new-todo-form");
-    // TODO: 残りを実装
+    this.todoInput = this.shadowRoot.querySelector("#new-todo");
+    this.todoList = this.shadowRoot.querySelector("#todo-list");
+
+    this.form.addEventListener("submit", (e) => {
+      e.preventDefault();
+      this.addTodo();
+    });
+  }
+
+  addTodo() {
+    const todoText = this.todoInput.value.trim();
+    if (todoText) {
+      const li = document.createElement("li");
+      li.textContent = todoText;
+
+      // 完了ボタンの作成
+      const completeButton = document.createElement("button");
+      completeButton.textContent = "Complete";
+      completeButton.addEventListener("click", () => {
+        li.classList.toggle("completed");
+      });
+
+      // 削除ボタンの作成
+      const deleteButton = document.createElement("button");
+      deleteButton.textContent = "Delete";
+      deleteButton.addEventListener("click", () => {
+        this.todoList.removeChild(li);
+      });
+
+      li.appendChild(completeButton);
+      li.appendChild(deleteButton);
+      this.todoList.appendChild(li);
+
+      // 入力フィールドをクリア
+      this.todoInput.value = "";
+    }
   }
 }
 

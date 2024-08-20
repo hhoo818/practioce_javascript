@@ -1,6 +1,6 @@
-// 50 x 50 の盤面とする
 const ROWS = 50;
 const COLS = 50;
+
 // 1セルのサイズ
 const RESOLUTION = 10;
 
@@ -46,9 +46,29 @@ function updateGrid(grid) {
 
   for (let row = 0; row < ROWS; row++) {
     for (let col = 0; col < COLS; col++) {
-      // 周囲のセルの生存数を数えて nextGrid[row][col] に true or false を設定する (実装してね)
+      let liveNeighbors = 0;
+
+      // 周囲8セルの生存数を数える
+      for (let i = -1; i <= 1; i++) {
+        for (let j = -1; j <= 1; j++) {
+          if (i === 0 && j === 0) continue;
+          const newRow = (row + i + ROWS) % ROWS;
+          const newCol = (col + j + COLS) % COLS;
+          liveNeighbors += grid[newRow][newCol] ? 1 : 0;
+        }
+      }
+
+      // ライフゲームのルールを適用
+      if (grid[row][col]) {
+        // 生きているセル
+        nextGrid[row][col] = liveNeighbors === 2 || liveNeighbors === 3;
+      } else {
+        // 死んでいるセル
+        nextGrid[row][col] = liveNeighbors === 3;
+      }
     }
   }
+
   return nextGrid;
 }
 
@@ -56,7 +76,6 @@ function updateGrid(grid) {
 canvas.addEventListener("click", function (evt) {
   const rect = canvas.getBoundingClientRect();
   const pos = { x: evt.clientX - rect.left, y: evt.clientY - rect.top };
-
   const row = Math.floor(pos.y / RESOLUTION);
   const col = Math.floor(pos.x / RESOLUTION);
   grid[row][col] = !grid[row][col];
@@ -65,8 +84,6 @@ canvas.addEventListener("click", function (evt) {
 });
 
 // requestAnimationFrame によって一定間隔で更新・描画を行う
-// NOTE: リフレッシュレートの高い画面では速く実行される (これを防ぐ場合は下記の例を参照)
-// https://developer.mozilla.org/ja/docs/Web/API/Window/requestAnimationFrame
 function update() {
   grid = updateGrid(grid);
   renderGrid(grid);
