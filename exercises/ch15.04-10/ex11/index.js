@@ -6,29 +6,35 @@ const template = document.querySelector("#todo-template");
 // { content: "...", completed: true or false } の配列
 const todos = [];
 
-function renderTodos(todos) {
+function renderTodos(todos, filter = "all") {
   list.innerHTML = "";
-  todos.forEach((todo, index) => {
-    const clone = template.content.cloneNode(true);
-    const li = clone.querySelector("li");
-    const toggle = clone.querySelector("input");
-    const label = clone.querySelector("label");
-    const destroy = clone.querySelector("button");
+  todos
+    .filter((todo) => {
+      if (filter === "all") return true;
+      if (filter === "active") return !todo.completed;
+      if (filter === "completed") return todo.completed;
+    })
+    .forEach((todo, index) => {
+      const clone = template.content.cloneNode(true);
+      const li = clone.querySelector("li");
+      const toggle = clone.querySelector("input");
+      const label = clone.querySelector("label");
+      const destroy = clone.querySelector("button");
 
-    li.classList.toggle("completed", todo.completed);
-    toggle.addEventListener("change", () => {
-      todo.completed = toggle.checked;
-      renderTodos(todos);
-    });
-    label.textContent = todo.content;
-    toggle.checked = todo.completed;
-    destroy.addEventListener("click", () => {
-      todos.splice(index, 1);
-      renderTodos(todos);
-    });
+      li.classList.toggle("completed", todo.completed);
+      toggle.addEventListener("change", () => {
+        todo.completed = toggle.checked;
+        renderTodos(todos);
+      });
+      label.textContent = todo.content;
+      toggle.checked = todo.completed;
+      destroy.addEventListener("click", () => {
+        todos.splice(index, 1);
+        renderTodos(todos);
+      });
 
-    list.appendChild(li);
-  });
+      list.appendChild(li);
+    });
 }
 
 form.addEventListener("submit", (e) => {
@@ -44,5 +50,6 @@ form.addEventListener("submit", (e) => {
 });
 
 window.addEventListener("hashchange", () => {
-  // ここを実装してね
+  const filter = location.hash.slice(2) || "all";
+  renderTodos(todos, filter);
 });
