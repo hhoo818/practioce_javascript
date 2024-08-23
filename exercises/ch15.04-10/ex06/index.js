@@ -16,6 +16,7 @@ template.innerHTML = `\
 class TodoApp extends HTMLElement {
   constructor() {
     super();
+    // ここの２行だたたして他は同じでいい
     this.attachShadow({ mode: "open" });
     this.shadowRoot.appendChild(template.content.cloneNode(true));
 

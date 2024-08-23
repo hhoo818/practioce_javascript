@@ -1,0 +1,4 @@
+"use strict";
+const elem = document.querySelector("#target");
+elem.innerHTML = "a";
+//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiaW5kZXguanMiLCJzb3VyY2VSb290IjoiIiwic291cmNlcyI6WyJpbmRleC50cyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiO0FBQUEsTUFBTSxJQUFJLEdBQUcsUUFBUSxDQUFDLGFBQWEsQ0FBQyxTQUFTLENBQUUsQ0FBQztBQUNoRCxJQUFJLENBQUMsU0FBUyxHQUFHLEdBQUcsQ0FBQyJ9
