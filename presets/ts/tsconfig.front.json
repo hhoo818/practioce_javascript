@@ -13,8 +13,14 @@
     // trueにしないとmoduleResolutionを設定しないとエラーになる
     "skipLibCheck": true
   },
+  "references": [
+    // Web Worker用設定ファイルを参照する
+    {
+      "path": "tsconfig.worker.json"
+    }
+  ],
   // TODO: 適宜フロント用にビルドする必要があるディレクトリを追加していく
   "include": ["ch00.1/**/*"],
-  // TODO: ↑の追加に合わせてテスト用のTSファイルを除外していく
-  "exclude": ["ch00.1/**/*.spec.ts"]
+  // TODO: ↑の追加に合わせてテスト用のTSファイルとWeb Worker用のTSファイルを除外していく
+  "exclude": ["ch00.1/**/*.spec.ts", "ch00.1/**/*.worker.ts"]
 }

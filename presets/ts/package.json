@@ -5,7 +5,7 @@
   "scripts": {
     "test": "jest --runInBand",
     "test:browser": "playwright test",
-    "server": "tsc -p tsconfig.front.json && serve",
+    "server": "tsc -b tsconfig.front.json && serve",
     "lint": "eslint . --max-warnings=0",
     "format": "prettier --write ."
   },
