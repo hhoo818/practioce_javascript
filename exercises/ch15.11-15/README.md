@@ -332,7 +332,7 @@ Ollama を使って、生成 AI とのチャットできる Web アプリケー�
 LLM のモデルは[gemma:2B](https://ollama.com/library/gemma) 程度を用いなさい。以下のコマンドでローカル環境に LLM(gemma:2B) が起動する。
 
 ```
-ollama run gemma2:2b
+ollama run gemma:2b
 ```
 
 ローカル環境に LLM のモデルが起動すると、Ollama の[REST API](https://github.com/ollama/ollama?tab=readme-ov-file#rest-api)が使用できる。

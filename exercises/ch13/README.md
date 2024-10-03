@@ -200,7 +200,7 @@ function f8() {
 }
 
 function f9() {
-  // NOTE: f12 との比較用
+  // NOTE: f10 との比較用
   wait1()
     .then(() => 42)
     .then(errY)

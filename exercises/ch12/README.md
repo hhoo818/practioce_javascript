@@ -49,6 +49,7 @@ function* counterGen(max) {
     }
   } catch (e) {
     console.log("counterGen: catch:", e);
+    throw e;
   } finally {
     console.log("counterGen: finally");
   }
