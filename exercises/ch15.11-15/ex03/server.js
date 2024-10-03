@@ -199,7 +199,7 @@ async function serveContentsHandler(url, _req, res) {
     const filePath = path.join(
       __dirname,
       "contents",
-      reqPath === "/" ? "index.html" : path.join(...reqPath.split("/")),
+      reqPath === "/" ? "index.html" : path.join(...reqPath.split("/"))
     );
 
     const content = await fs.readFile(filePath);
@@ -235,15 +235,18 @@ function cookieAuthzMiddleware(_url, req, res, params) {
   // HttpOnly を有効にしてクライアントの JavaScript から Cookie を参照できないようにする
   res.setHeader(
     "Set-Cookie",
-    `sid=${encodeURIComponent(sid)}; SameSite=Lax; Path=/; HttpOnly;`,
+    `sid=${encodeURIComponent(sid)}; SameSite=Lax; Path=/; HttpOnly;`
   );
   return true;
 }
 
 // CORS のヘッダを返すミドルウェア
 function corsMiddleware(_url, _req, res) {
-    res.setHeader("Access-Control-Allow-Origin", "http://localhost:3000"); // クライアントのオリジンを指定（ワイルドカードも可）
-  res.setHeader("Access-Control-Allow-Methods", "GET, POST, PATCH, DELETE, OPTIONS"); // 許可する HTTP メソッド
+  res.setHeader("Access-Control-Allow-Origin", "http://localhost:3000"); // クライアントのオリジンを指定（ワイルドカードも可）
+  res.setHeader(
+    "Access-Control-Allow-Methods",
+    "GET, POST, PATCH, DELETE, OPTIONS"
+  ); // 許可する HTTP メソッド
   res.setHeader("Access-Control-Allow-Headers", "Content-Type"); // 許可するヘッダーを指定
   res.setHeader("Access-Control-Allow-Credentials", "true"); // Cookie の送信を許可
   // TODO: CORS に必要なヘッダを複数設定する
@@ -357,7 +360,7 @@ async function main() {
         ["GET", "/api/tasks/{id}", getTaskHandler, authz, cors],
         ["POST", "/api/tasks", createTaskHandler, authz, cors],
         ["PATCH", "/api/tasks/{id}", patchTaskHandler, authz, cors],
-        ["DELETE", "/api/tasks/{id}", deleteTaskHandler, authz, cors],
+        ["DELETE", "/api/tasks/{id}", deleteTaskHandler, authz, cors]
       )(req, res);
     })
     .listen(3001);

@@ -87,4 +87,9 @@ function broadcastUpdate() {
   }
 }
 
+const channel = new BroadcastChannel('todo_channel');
+channel.onmessage = () => {
+  updateTodoList();
+};
+
 updateTodoList();

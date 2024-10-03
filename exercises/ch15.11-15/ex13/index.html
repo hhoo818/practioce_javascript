@@ -42,7 +42,7 @@
         const response = await fetch("http://localhost:11434/api/chat", {
           method: "POST",
           headers: {
-            "Content-Type": "application/json",
+            "Content-Type": "application/json",s
           },
           body: JSON.stringify({
             model: "gemma:2b",
@@ -60,10 +60,11 @@
           const { done, value } = await reader.read();
           if (done) break;
 
-          const chunk = decoder.decode(value, { stream: true });
+          //const chunk = decoder.decode(value, { stream: true });
           //chunk.message.content が空になる
-          //const chunk = JSON.parse(decoder.decode(value, { stream: true }));
-          chatbox.innerHTML += `<p><strong>LLM:</strong> ${chunk}</p>`;
+          const chunk = JSON.parse(decoder.decode(value, { stream: true }));
+          //chatbox.innerHTML += `<p><strong>LLM:</strong> ${chunk}</p>`;
+          chatbox.textContent += `LLM: ${chunk}\n`;
           chatbox.scrollTop = chatbox.scrollHeight; // チャットボックスをスクロール
         }
       });

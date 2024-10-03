@@ -133,7 +133,9 @@ channel.onmessage = (event) => {
   } else if (event.data.type === "delete") {
     const elem = list.querySelector(`li[data-id="${event.data.id}"]`);
     if (elem) {
+      deleteTodoFromDb(event.data.id)
       list.removeChild(elem);
+      
     }
   }
 };
