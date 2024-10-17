@@ -31,3 +31,22 @@ async function startChild() {
 }
 
 // TODO: ここに処理を書く
+process.on("SIGINT", () => {
+  console.log("SIGINT");
+  process.kill(child.pid);
+  process.exit(0);
+});
+
+process.on("SIGTERM", () => {
+  console.log("SIGTERM");
+  process.kill(child.pid);
+  process.exit(0);
+});
+
+while (true) {
+  const resp = await startChild();
+  if (resp[0] === 0) {
+    // 正常終了なので処理を抜ける
+    break;
+  }
+}
