@@ -2,7 +2,7 @@ import { isMainThread, Worker, parentPort } from "worker_threads";
 
 if (isMainThread) {
   let num = 0;
-  let worker = new Worker(__filename);
+  const worker = new Worker(__filename);
 
   worker.on("online", () => {
     console.log("Worker is online");

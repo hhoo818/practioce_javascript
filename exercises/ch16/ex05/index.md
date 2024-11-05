@@ -18,4 +18,4 @@
 - `node cat.mjs invalid-file > output.txt`
 予想：エラーが起きる。結果：同じ
 - `node cat.mjs invalid-file 2> error.txt`
-予想：エラーが起きる。結果：同じ
+予想：エラーが起きる。結果：エラーが書き込まれる
