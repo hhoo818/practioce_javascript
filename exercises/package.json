@@ -30,6 +30,10 @@
   "dependencies": {
     "@octokit/core": "^6.1.2",
     "@octokit/types": "^13.6.1",
+    "@pollyjs/adapter-node-http": "^6.0.6",
+    "@pollyjs/core": "^6.0.6",
+    "@pollyjs/node-server": "^6.0.6",
+    "@pollyjs/persister-fs": "^6.0.6",
     "dotenv": "^16.4.5",
     "iconv-lite": "^0.6.3",
     "supertest": "^7.0.0",

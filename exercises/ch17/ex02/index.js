@@ -13,7 +13,7 @@ const octokit = new Octokit({
   auth: TOKEN,
 });
 
-const createIssue = async (title, body) => {
+export const createIssue = async (title, body) => {
   try {
     const response = await octokit.request(
       "POST /repos/{owner}/{repo}/issues",
@@ -35,7 +35,7 @@ const createIssue = async (title, body) => {
   }
 };
 
-const closeIssue = async (id) => {
+export const closeIssue = async (id) => {
   try {
     const response = await octokit.request(
       "PATCH /repos/{owner}/{repo}/issues/{issue_number}",
@@ -57,7 +57,7 @@ const closeIssue = async (id) => {
   }
 };
 
-const fetchIssue = async () => {
+export const fetchIssue = async () => {
   try {
     const response = await octokit.request("GET /repos/{owner}/{repo}/issues", {
       owner: OWNER,
