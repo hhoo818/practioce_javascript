@@ -5,10 +5,10 @@
     "main": "index.js",
     "scripts": {
         "test": "jest --runInBand",
-        "lint": "eslint \"/**/*.{js,ts}\"",
-        "lint:fix": "eslint /**/*.{js,ts} --fix",
-        "format": "prettier --check \"/**/*.{js,ts}\"",
-        "format:fix": "prettier --write \"/**/*.{js,ts}\""
+        "lint": "eslint .",
+        "lint:fix": "eslint --fix .",
+        "format": "prettier --check .",
+        "format:fix": "prettier --write ."
     },
     "author": "",
     "license": "ISC",
