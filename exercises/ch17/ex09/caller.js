@@ -1,8 +1,4 @@
-\import {
-  TaskManager,
-  isLowOrCompletedTask,
-  not,
-} from "./task.flow.js";
+import { TaskManager, isLowOrCompletedTask, not } from "./task.flow.js";
 
 const user1 = { id: 1, name: "Alice" };
 const user2 = { id: 2, name: "Bob" };
