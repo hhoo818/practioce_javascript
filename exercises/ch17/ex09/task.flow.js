@@ -1,5 +1,4 @@
 // @flow
-
 export type User = { id: number, name: string };
 export type Task = { title: string, completed: boolean, user: User };
 export type Priority = "low" | "middle" | "high";
