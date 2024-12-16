@@ -1,0 +1,36 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ノイズ背景 */
+.bg-noise {
+    background-image: url('https://www.transparenttextures.com/patterns/noisy.png');
+  }
+  
+  /* グラデーションアニメーション */
+  @keyframes gradient {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+  }
+  
+  .animate-gradient {
+    background-size: 200% 200%;
+    animation: gradient 6s ease infinite;
+  }
+  
+  /* 秒針の光るエフェクト */
+  .animate-glow {
+    stroke-dasharray: 4;
+    animation: glow 1s infinite linear;
+  }
+  
+  @keyframes glow {
+    0%, 100% { stroke: #ff3399; opacity: 1; }
+    50% { stroke: #ff77cc; opacity: 0.5; }
+  }
+  
+  /* デジタル時計の光る文字 */
+  .glow {
+    text-shadow: 0 0 5px #ff3399, 0 0 10px #ff66cc, 0 0 20px #ff99ff;
+  }

@@ -8,5 +8,6 @@ module.exports = {
     filename: "bundle.js",
     path: path.join(__dirname, "dist"),
   },
+  mode: "develops",
   devtool: "source-map", // ソースマップを生成
 };
