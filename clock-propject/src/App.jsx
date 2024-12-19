@@ -1,8 +1,16 @@
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 import DigitalClockWithDate from "./component/DigitalClockWithDate";
 import AnalogClockWithDate from "./component/AnalogClockWithDate";
 import changeImage from "./item/change.png";
 import Menu from "./component/Menu";
+import Dialog from "./component/Dialog";
+import sound1 from "./lib/sound/Kitchen_Timer.mp3"
+
+import {
+  generatePicture,
+  getPromptByTime,
+  NegativeWord,
+} from "./component/generatePicture";
 
 const App = () => {
   const [isAnalog, setIsAnalog] = useState(true);
@@ -11,12 +19,81 @@ const App = () => {
   // アラーム用のstate
   const [isActive, setIsActive] = useState(false);
   const [isTriggered, setIsTriggered] = useState(false);
+  const [isOn, setIsOn] = useState(false);
   // タイマーのstate
   const [isTriggered2, setIsTriggered2] = useState(false);
 
+  // ダイアログ用のstate
+  const [isShowDialog, setIsShowDialog] = useState(false);
+  const [imageContent, setImageContent] = useState(null);
+  const [imageElement, setImageElement] = useState(null);
+  const [loading, setLoading] = useState(false);
+  const hasFetched = useRef(false);
+  const alarmAudio = useRef(null); // 音声を保持するためのref
   const toggleClock = () => {
     setIsAnalog(!isAnalog);
   };
+
+
+
+  // 画像生成関数
+  useEffect(() => {
+    alarmAudio.current = new Audio(sound1); // 音声ファイルを読み込む
+    alarmAudio.current.loop = true; // ループ設定
+
+    // アラームが鳴っている場合
+    if ((isTriggered && isActive) || isTriggered2) {
+      alarmAudio.current.play().catch((err) => {
+        console.error("自動再生エラー:", err);
+      });
+    } else {
+      // アラームが停止した場合、音声を停止
+      alarmAudio.current.pause();
+      alarmAudio.current.currentTime = 0;
+    }
+  
+    const fetchImage = async () => {
+      const prompt = getPromptByTime(theme); // 時間帯に応じた prompt を取得
+      const result = await generatePicture({
+        prompt: prompt,
+        negative_prompt: NegativeWord,
+        height: 768,
+        width: 552,
+      });
+      setImageElement(result);
+    };
+    // ページを開いた瞬間に画像を生成
+    if (!hasFetched.current) {
+      fetchImage(); // 初回実行
+      hasFetched.current = true;
+    }
+    // 次のちょうどの時間までの待機時間を計算
+    const now = new Date();
+    const nextHour = new Date(now);
+    nextHour.setMinutes(0);
+    nextHour.setSeconds(0);
+    nextHour.setMilliseconds(0);
+    nextHour.setHours(now.getHours() + 1); // 次の時間の00分00秒
+
+    const timeUntilNextHour = nextHour - now;
+
+    // 次のちょうどの時間に fetchImage を実行
+    const timeoutId = setTimeout(() => {
+      //fetchImage(); // ちょうどの時間で1回実行
+      // その後は1時間ごとに fetchImage を実行
+      const intervalId = setInterval(fetchImage, 60 * 60 * 1000); // 1時間ごと
+      // クリーンアップ: interval を管理
+      return () => clearInterval(intervalId);
+    }, timeUntilNextHour);
+
+    // クリーンアップ: timeout を管理
+    return () => {clearTimeout(timeoutId)
+      if (alarmAudio.current) {
+        alarmAudio.current.pause();
+        alarmAudio.current.currentTime = 0;
+      }
+    };
+  }, [isActive, isTriggered, isTriggered2, theme]);
 
   return (
     <div
@@ -54,16 +131,8 @@ const App = () => {
         </div>
 
         {/* 右側: 初音ミク画像 */}
-        <div className="flex justify-center items-center">
-          <img
-            src={
-              theme === "miku"
-                ? "https://example.com/hatsune-miku.png" // 初音ミクの画像URL
-                : "https://example.com/kagamine-rin-len.png" // 鏡音リン・レンの画像URL
-            }
-            alt={theme === "miku" ? "初音ミク" : "鏡音リンとレン"}
-            className="rounded-xl shadow-lg max-w-full max-h-[600px] bg-white/20 backdrop-blur-sm"
-          />
+        <div className="flex justify-center items-center h-[550px]">
+          {imageElement || <p>画像を読み込み中...</p>}
         </div>
       </div>
 
@@ -75,6 +144,7 @@ const App = () => {
               onClick={() => {
                 setIsActive(false);
                 setIsTriggered(false);
+                setIsOn(false)
               }}
               className="px-4 py-2 bg-teal-600 text-white font-semibold rounded-full shadow-md hover:bg-teal-500"
             >
@@ -101,6 +171,20 @@ const App = () => {
         </div>
       )}
 
+      <Dialog
+        title={"生成イラスト"}
+        isOpen={isShowDialog}
+        onClose={() => {
+          setIsShowDialog(false);
+        }}
+      >
+        {loading ? (
+          <p>Loading...</p> // ローディング表示
+        ) : (
+          imageContent || <p>No image to display</p> // 画像またはメッセージを表示
+        )}
+      </Dialog>
+
       {/* メニュー */}
       <div className="absolute bottom-0 left-0 right-0 p-6">
         <Menu
@@ -111,6 +195,12 @@ const App = () => {
           setIsTriggered2={setIsTriggered2}
           theme={theme}
           setTheme={setTheme}
+          setImageContent={setImageContent}
+          setLoading={setLoading}
+          setIsShowDialog={setIsShowDialog}
+          setImageElement={setImageElement}
+          isOn={isOn}
+          setIsOn={setIsOn}
         />
       </div>
     </div>

@@ -9,12 +9,16 @@ const Alarm = (props) => {
   useEffect(() => {
     const interval = setInterval(() => {
       setCurrentTime(new Date());
-      if (
-        props.isActive &&
-        targetTime &&
-        `${currentTime.getHours()}:${currentTime.getMinutes()}` === targetTime
-      ) {
-        props.setIsTriggered(true);
+      if (props.isActive && targetTime) {
+        // 現在時刻を"HH:MM"形式に整形
+        const formattedTime = `${String(currentTime.getHours()).padStart(
+          2,
+          "0"
+        )}:${String(currentTime.getMinutes()).padStart(2, "0")}`;
+
+        if (formattedTime === targetTime) {
+          props.setIsTriggered(true);
+        }
       }
     }, 1000);
 
@@ -61,6 +65,8 @@ const Alarm = (props) => {
           onOff={() => {
             props.setIsActive(false);
           }}
+          isOn={props.isOn}
+          setIsOn={props.setIsOn}
         />
         <button
           onClick={props.onClose}
@@ -84,6 +90,8 @@ Alarm.propTypes = {
   isTriggered: PropTypes.bool.isRequired,
   setIsTriggered: PropTypes.func.isRequired,
   theme: PropTypes.string.isRequired,
+  isOn: PropTypes.bool.isRequired,
+  setIsOn: PropTypes.func.isRequired,
 };
 
 export default Alarm;

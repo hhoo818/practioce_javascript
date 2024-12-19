@@ -1,16 +1,14 @@
-import { useState } from "react";
 import PropTypes from "prop-types";
 
 const ToggleSwitch = (props) => {
-  const [isOn, setIsOn] = useState(false);
 
   const handleToggle = () => {
-    if (!isOn) {
+    if (!props.isOn) {
       props.onOn();
     } else {
       props.onOff();
     }
-    setIsOn((prevState) => !prevState);
+    props.setIsOn((prevState) => !prevState);
   };
 
   return (
@@ -19,28 +17,28 @@ const ToggleSwitch = (props) => {
         <input
           type="checkbox"
           id="toggle_switch"
-          checked={isOn}
+          checked={props.isOn}
           onChange={handleToggle}
           className="absolute w-0 h-0 opacity-0"
         />
         <label
           htmlFor="toggle_switch"
           className={`block cursor-pointer absolute inset-0 rounded-full transition-all duration-400 shadow-inner 
-            ${isOn ? "bg-emerald-500" : "bg-gray-300"}
+            ${props.isOn ? "bg-emerald-500" : "bg-gray-300"}
           `}
         ></label>
         <span
           className={`block absolute h-6 w-6 bg-white rounded-full shadow-md transition-transform duration-400 transform translate-y-1
-            ${isOn ? "translate-x-8" : "translate-x-1"}
+            ${props.isOn ? "translate-x-8" : "translate-x-1"}
           `}
         ></span>
       </div>
       <span
         className={`text-lg font-bold ${
-          isOn ? "text-emerald-600" : "text-gray-800"
+          props.isOn ? "text-emerald-600" : "text-gray-800"
         }`}
       >
-        {isOn ? "ON" : "OFF"}
+        {props.isOn ? "ON" : "OFF"}
       </span>
     </div>
   );
@@ -49,6 +47,8 @@ const ToggleSwitch = (props) => {
 ToggleSwitch.propTypes = {
   onOn: PropTypes.func,
   onOff: PropTypes.func,
+    isOn:PropTypes.bool.isRequired,
+    setIsOn: PropTypes.func.isRequired
 };
 
 export default ToggleSwitch;
