@@ -77,9 +77,7 @@ const App = () => {
 
     const timeUntilNextHour = nextHour - now;
 
-    // 次のちょうどの時間に fetchImage を実行
     const timeoutId = setTimeout(() => {
-      //fetchImage(); // ちょうどの時間で1回実行
       // その後は1時間ごとに fetchImage を実行
       const intervalId = setInterval(fetchImage, 60 * 60 * 1000); // 1時間ごと
       // クリーンアップ: interval を管理
@@ -179,13 +177,13 @@ const App = () => {
         }}
       >
         {loading ? (
-          <p>Loading...</p> // ローディング表示
+          <p>Loading...</p> 
         ) : (
-          imageContent || <p>No image to display</p> // 画像またはメッセージを表示
+          imageContent || <p>No image to display</p> 
         )}
       </Dialog>
 
-      {/* メニュー */}
+    
       <div className="absolute bottom-0 left-0 right-0 p-6">
         <Menu
           isActive={isActive}

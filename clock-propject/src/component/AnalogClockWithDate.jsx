@@ -40,7 +40,7 @@ const AnalogClockWithDate = (props) => {
     const numbers = [];
     for (let i = 1; i <= 12; i++) {
       const angle = ((i / 12) * 360 - 90) * (Math.PI / 180);
-      const x = center + (radius - 20) * Math.cos(angle); // 半径を少し小さくして調整
+      const x = center + (radius - 20) * Math.cos(angle); 
       const y = center + (radius - 20) * Math.sin(angle);
       numbers.push(
         <text
